@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 2058699830156895310}
   - component: {fileID: 2058699830156895311}
   - component: {fileID: 2058699830156895308}
-  - component: {fileID: 5647484613532350765}
-  - component: {fileID: 207598343496501124}
+  - component: {fileID: 1844384183570489213}
+  - component: {fileID: 8615026185826883487}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: FastEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.7779869, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e23149c5883c3b40b8ca25c758c0616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  moveSpeed: 4
---- !u!114 &5647484613532350765
+  maxHealth: 50
+  moveSpeed: 8
+--- !u!114 &1844384183570489213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
---- !u!114 &207598343496501124
+--- !u!114 &8615026185826883487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,5 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15da62894c516b441bd74b3551459df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  playerHealth: {fileID: 5647484613532350765}
+  damage: 15
+  playerHealth: {fileID: 1844384183570489213}

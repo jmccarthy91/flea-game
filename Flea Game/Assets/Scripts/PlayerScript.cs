@@ -7,11 +7,9 @@ public class PlayerScript : MonoBehaviour
 
     public float moveSpeed = 5f;
     public float attackRate = 2f;
-    public int maxHealth = 100;
-    public float attackRange = 0.5f;
+    public float attackRange = 1.8f;
     public float attackDamage = 50f;
 
-    int currentHealth;
     float nextAttackTime = 0f;
     
     public Rigidbody2D rigidBody;
@@ -26,11 +24,6 @@ public class PlayerScript : MonoBehaviour
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-    }
-
-    void Start()
-    {
-        currentHealth = maxHealth;
     }
 
     void Update()

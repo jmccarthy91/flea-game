@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
 
-    public float damage = 20;
     public float maxHealth = 100;
     public float moveSpeed = 4f;
     
