@@ -9,6 +9,8 @@ public class PlayerScript : MonoBehaviour
     public float attackRate = 2f;
     public float attackRange = 1.8f;
     public float attackDamage = 50f;
+    public float maxHealth = 100;
+    public float currentHealth;
 
     float nextAttackTime = 0f;
     
@@ -24,6 +26,8 @@ public class PlayerScript : MonoBehaviour
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        GameEvents.current.onEnemyCollision += onCollisionDamage;
     }
 
     void Update()
@@ -74,7 +78,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()                                                                     // can delete this later
+    void OnDrawGizmos()                                                            // can delete this later
     {
         if (attackPoint == null)
         {
@@ -82,6 +86,18 @@ public class PlayerScript : MonoBehaviour
         }
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    void onCollisionDamage()
+    {
+        currentHealth -= 20f;                                                       //HARDCODING DAMAGE IN FOR NOW
+        Debug.Log("took damage!");
+
+        if (currentHealth <= 0f)
+        {
+            Destroy(gameObject);
+                                                                                    //add in game over screen
+        }
     }
 
 }

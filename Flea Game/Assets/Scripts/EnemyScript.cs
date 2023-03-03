@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
 
-    public float maxHealth = 100;
+    public float maxHealth = 100f;
     public float moveSpeed = 4f;
+    public float damage = 20f;
     
     float currentHealth;
     Rigidbody2D rigidBody;
@@ -46,12 +47,21 @@ public class EnemyScript : MonoBehaviour
         }
     }
     
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage)            // check this later - am I getting damage from player?
     {
         currentHealth -= damage;
         
         if (currentHealth <= 0)
         {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameEvents.current.EnemyCollision();
             Destroy(gameObject);
         }
     }

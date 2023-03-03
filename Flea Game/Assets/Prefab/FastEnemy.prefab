@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 2058699830156895310}
   - component: {fileID: 2058699830156895311}
   - component: {fileID: 2058699830156895308}
-  - component: {fileID: 1844384183570489213}
-  - component: {fileID: 8615026185826883487}
   m_Layer: 6
   m_Name: FastEnemy
   m_TagString: Untagged
@@ -152,31 +150,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   moveSpeed: 8
---- !u!114 &1844384183570489213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058699830156895347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db3485f00d6a2cf42b28b363acbd899c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
---- !u!114 &8615026185826883487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058699830156895347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15da62894c516b441bd74b3551459df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 15
-  playerHealth: {fileID: 1844384183570489213}
+  damage: 20
