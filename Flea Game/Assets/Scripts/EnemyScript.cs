@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
 
-    public float maxHealth = 100f;
+    public UnitHealth _enemyHealth = new UnitHealth(100, 100);
     public float moveSpeed = 4f;
-    public float damage = 20f;
+    public float attackDamage = 50f;
     
     float currentHealth;
     Rigidbody2D rigidBody;
@@ -23,8 +23,7 @@ public class EnemyScript : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
-        target = GameObject.Find("Player").transform; // Clean this up later - apparently can target based upon layer?
+        target = GameObject.Find("Player").transform;               // Clean this up later - apparently can target based upon layer?
     }
 
     void Update()
@@ -46,11 +45,11 @@ public class EnemyScript : MonoBehaviour
             rigidBody.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
         }
     }
-    
-    public void TakeDamage(float damage)            // check this later - am I getting damage from player?
+
+    private void EnemyTakeDmg(float dmg)
     {
-        currentHealth -= damage;
-        
+        GameManager.gameManager._enemyHealth.DmgUnit(dmg);
+
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -61,7 +60,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameEvents.current.EnemyCollision();
+            GameEvents.gameEvents.EnemyCollision(attackDamage);
             Destroy(gameObject);
         }
     }

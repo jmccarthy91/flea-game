@@ -9,8 +9,6 @@ public class PlayerScript : MonoBehaviour
     public float attackRate = 2f;
     public float attackRange = 1.8f;
     public float attackDamage = 50f;
-    public float maxHealth = 100;
-    public float currentHealth;
 
     float nextAttackTime = 0f;
     
@@ -26,8 +24,7 @@ public class PlayerScript : MonoBehaviour
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
-        GameEvents.current.onEnemyCollision += onCollisionDamage;
+        GameEvents.gameEvents.onEnemyCollision += onCollisionDamage;
     }
 
     void Update()
@@ -73,7 +70,7 @@ public class PlayerScript : MonoBehaviour
         //damage
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyScript>().TakeDamage(attackDamage);
+            enemy.GetComponent<EnemyScript>().TakeDamage(attackDamage);     //I think I need to update this to be event driven? go watch that tutorial and see how he passed in IDs
             Debug.Log("hit enemy!");
         }
     }
@@ -88,16 +85,35 @@ public class PlayerScript : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    void onCollisionDamage()
+    private void PlayerTakeDmg(float dmg)
     {
-        currentHealth -= 20f;                                                       //HARDCODING DAMAGE IN FOR NOW
-        Debug.Log("took damage!");
-
-        if (currentHealth <= 0f)
-        {
-            Destroy(gameObject);
-                                                                                    //add in game over screen
-        }
+        GameManager.gameManager._playerHealth.DmgUnit(dmg);
     }
+
+    private void PlayerHeal(float healing)
+    {
+        GameManager.gameManager._playerHealth.HealUnit(healing);
+    }
+
+    void onCollisionDamage(float damage)
+    {
+        //take damage from enemy
+        PlayerTakeDmg(damage);
+        Debug.Log(GameManager.gameManager._playerHealth.Health);
+    }
+
+    //public void DamageOverTime(int damageAmount, float damageTime)
+    //{
+    //    StartCoroutine(DamageOverTimeCoroutine(damageAmount, damageTime));
+    //}
+
+    //IEnumerator DamageOverTimeCoroutine(int damageAmount, float duration)
+    //{
+    //    while(currentHealth > 0f)
+    //    {
+    //        currentHealth -= damageAmount;
+    //        yield return new WaitForSeconds(duration);
+    //    }
+    //}
 
 }
